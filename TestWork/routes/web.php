@@ -16,4 +16,4 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
-Route::resource('article',\App\Http\Controllers\ArticleController::class);
+Route::resource('article',\App\Http\Controllers\ArticleController::class)->except(['show']);

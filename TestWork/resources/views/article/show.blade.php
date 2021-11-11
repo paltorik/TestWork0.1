@@ -3,30 +3,33 @@
 
 @section('content')
 
-
-    <form name="create_article" method="POST" enctype="multipart/form-data" action="{{route('article.update')}}">
+    <div class="uk-container uk-container-large uk-margin-large-top">
+    <form class="uk-form-stacked uk-margin-large-bottom" name="create_article" method="POST" enctype="multipart/form-data" action="{{route('article.update',$article)}}">
         @csrf
         @method('PUT')
-        <div>
-            <label>
-                Заголовок
-                <input type="text" name="title" required value="{{old('title')}}">
-            </label>
-            @error('title')<strong>{{ $message }}</strong>@enderror
-        </div>
-        <div>
-            <label>
-                Содержание
-                <textarea name="content" required>
-                {{old('content')}}
-            </textarea>
-            </label>
-            @error('content')<strong>{{ $message }}</strong>@enderror
+
+
+        <div class="uk-margin">
+            <label class="uk-form-label" for="title">Заголовок</label>
+            <div class="uk-form-controls">
+                <input name="title" class="uk-input @error('title') is-invalid @enderror" id="form_name" type="text" value="{{ $article->title ?? old('title') }}" required>
+            </div>
+            @error('title')<span class="uk-text-danger" role="alert"><strong>{{ $message }}</strong></span>@enderror
         </div>
 
-        <button type="submit">Создать</button>
+        <div class="uk-margin">
+            <label class="uk-form-label" for="content">Содержание</label>
+            <div class="uk-form-controls">
+                <textarea class="uk-textarea @error('content') is-invalid @enderror" name="content" rows="5" placeholder="Textarea" required>{{ $article->content ?? old('content') }}</textarea>
+            </div>
+            @error('content')<span class="uk-text-danger" role="alert"><strong>{{ $message }}</strong></span>@enderror
+        </div>
+
+        <a class="uk-button uk-button-primary" href="{{route('article.index')}}">Отмена</a>
+        <button class="uk-button uk-button-default" type="submit">Сохранить</button>
 
 
 
     </form>
+    </div>
 @endsection

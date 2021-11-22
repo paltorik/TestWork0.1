@@ -1,7 +1,8 @@
 <?php
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Route;
+use Modules\Article\Http\Controllers\ArticleApiController;
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -16,6 +17,6 @@ use Illuminate\Support\Facades\Route;
 /*Route::middleware('auth:api')->get('/article', function (Request $request) {
     return $request->user();
 });*/
-Route::apiResource('/article',\App\Http\Controllers\ArticleApiController::class)->only([
+Route::apiResource('/article',ArticleApiController::class)->only([
     'index', 'show', 'store', 'update', 'destroy'
 ])->middleware(\Modules\Article\Http\Middleware\HeaderJsonResponse::class);

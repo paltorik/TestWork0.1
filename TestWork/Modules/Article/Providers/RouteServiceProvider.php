@@ -12,7 +12,8 @@ class RouteServiceProvider extends ServiceProvider
      *
      * @var string
      */
-    protected $moduleNamespace = 'Modules\Article\Http\Controllers';
+    //protected $moduleNamespace = 'Modules\Article\Http\Controllers';
+    protected $moduleNamespace ='';
 
     /**
      * Called before routes are registered.
@@ -24,7 +25,7 @@ class RouteServiceProvider extends ServiceProvider
     public function boot()
     {
         parent::boot();
-        
+
     }
 
     /**
